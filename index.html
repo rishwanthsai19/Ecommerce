@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="css/style.css"><title>CartNest: Sign in</title></head>
+<body class="center"><div id="loader" class="loader" role="status" aria-label="Loading"></div><div id="msg" class="msg"></div>
+<div class="login">
+<aside class="login-art"><div class="hero-disc"><img src="img/trolley.svg" alt="A shopping trolley filled with groceries"></div>
+<h2>Welcome to <span class="app-name">CartNest</span></h2><p class="tagline">Everything you need, delivered to your nest.</p></aside>
+<div class="login-form"><main class="card auth">
+<a class="brand" href="index.html"><img src="img/logo.svg" alt=""><h1 class="app-name">CartNest</h1></a>
+<div class="atabs"><button class="tab active" data-t="in">Sign In</button><button class="tab" data-t="up">Sign Up</button><button class="tab" data-t="rp">Reset Password</button></div>
+<form id="in" class="pane" novalidate><div id="e_in" class="errs"></div>
+<label>Email<input id="in_email" type="email" autocomplete="username"></label>
+<label>Password<input id="in_pw" type="password" autocomplete="current-password"></label>
+<button class="b primary block">Sign in</button></form>
+<form id="up" class="pane" style="display:none" novalidate><div id="e_up" class="errs"></div>
+<label>Full name<input id="up_name"></label>
+<label>Email<input id="up_email" type="email"></label>
+<label>Mobile number<input id="up_mobile" inputmode="numeric" maxlength="10"></label>
+<label>Password<input id="up_pw" type="password" autocomplete="new-password"></label>
+<label>Confirm password<input id="up_pw2" type="password" autocomplete="new-password"></label>
+<button class="b primary block">Create account</button></form>
+<form id="rp" class="pane" style="display:none" novalidate><div id="e_rp" class="errs"></div>
+<label>Email<input id="rp_email" type="email"></label>
+<button class="b primary block">Send reset link</button></form>
+</main></div></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+<script src="js/config.js"></script><script src="js/api.js"></script><script src="js/validators.js"></script><script src="js/ui.js"></script><script src="js/auth-page.js"></script></body></html>

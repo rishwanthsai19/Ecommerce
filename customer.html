@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="css/style.css"><title>CartNest: Shop</title></head>
+<body><div id="loader" class="loader" role="status" aria-label="Loading"></div><div id="msg" class="msg"></div>
+<header>
+<a class="brand" href="#shop" data-go="shop"><img src="img/logo.svg" alt=""><h1 class="app-name">CartNest</h1></a>
+<div class="hsearch"><span data-ic="search"></span><input id="hsearch" type="search" placeholder="Search for products" aria-label="Search products" autocomplete="off"></div>
+<div class="hright">
+<button class="hbtn" data-go="cart" aria-label="Cart"><span data-ic="cart"></span><span class="lbl">Cart</span><span class="cbadge" id="cartCount">0</span></button>
+<div class="acct" id="acct"><button class="hbtn" id="acctBtn" aria-haspopup="true" aria-expanded="false"><span class="avatar" id="avatar">U</span><span class="lbl" id="hello">Account</span><span data-ic="chevron"></span></button>
+<div class="acct-menu" id="acctMenu" role="menu">
+<div class="acct-top"><b id="menuName">My account</b><small id="who"></small></div>
+<button class="mi" data-go="orders" role="menuitem"><span data-ic="orders"></span>My orders</button>
+<button class="mi" data-go="profile" role="menuitem"><span data-ic="user"></span>My profile</button>
+<button class="mi" data-go="security" role="menuitem"><span data-ic="key"></span>Password &amp; security</button>
+<button class="mi out" onclick="logout()" role="menuitem"><span data-ic="logout"></span>Sign out</button>
+</div></div></div></header>
+
+<main class="cmain">
+<section id="shop" class="sec">
+<div class="benefits">
+<div class="benefit"><span class="bi" data-ic="card"></span><div><b>Cash or credit</b><small>Pay your way at checkout</small></div></div>
+<div class="benefit"><span class="bi" data-ic="shield"></span><div><b>Live stock check</b><small>Only buy what is on the shelf</small></div></div>
+<div class="benefit"><span class="bi" data-ic="orders"></span><div><b>Bill for every order</b><small>Open it any time from My orders</small></div></div>
+</div>
+<div class="sec-head"><h2>Shop by category</h2><p>Pick a category to start browsing</p></div>
+<div id="catGrid" class="cat-grid"></div>
+<div id="dealsWrap" style="display:none"><div class="sec-head"><h2>Almost gone</h2><p>Low stock, grab them before they are sold out</p></div><div id="deals" class="hscroll"></div></div>
+<div class="sec-head" id="allProducts"><h2>All products</h2>
+<div class="filters"><span class="count-note" id="resultCount"></span>
+<select id="catFilter" aria-label="Category"></select>
+<select id="sortBy" aria-label="Sort by"><option value="">Sort: Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="az">Name: A to Z</option></select></div></div>
+<div id="shopGrid" class="grid"></div><div id="shopPager" class="pager"></div>
+</section>
+
+<section id="cart" class="sec" style="display:none">
+<div class="sec-head" style="margin-top:0"><h2>Your cart</h2></div>
+<div class="cart-layout"><div class="card" id="cartList"></div>
+<aside class="card sticky"><h3>Order summary</h3>
+<div class="sumrow"><span>Items</span><b id="cartItems">0</b></div>
+<div class="sumrow big"><span>Total</span><span id="cartTotal">0.00</span></div>
+<div class="pay"><label><input type="radio" name="pay" value="cash" checked> Cash</label><label><input type="radio" name="pay" value="credit"> Credit</label></div>
+<p><small id="creditInfo"></small></p>
+<button id="checkoutBtn" class="b primary block">Place order</button></aside></div>
+</section>
+
+<section id="account" class="sec" style="display:none">
+<div class="hello"><span class="avatar" id="avatar2">U</span><div><h2 id="acctName">My account</h2><small id="acctEmail"></small></div></div>
+<div class="atabs2"><button class="atab" data-go="orders"><span data-ic="orders"></span>My orders</button><button class="atab" data-go="profile"><span data-ic="user"></span>Profile</button><button class="atab" data-go="security"><span data-ic="key"></span>Password &amp; security</button></div>
+
+<div id="pane-orders" class="apane">
+<div class="stats"><div class="stat"><span>Orders placed</span><b id="orderCount">0</b></div><div class="stat"><span>Total spent</span><b id="spent">0.00</b></div></div>
+<div class="card flush"><table><thead><tr><th>Order</th><th>Date</th><th>Payment</th><th>Items</th><th>Total</th><th></th></tr></thead><tbody id="orderBody"></tbody></table></div>
+</div>
+
+<div id="pane-profile" class="apane" style="display:none"><div class="acct-grid">
+<form id="profForm" class="card" novalidate><h3>Personal details</h3><div id="e_prof" class="errs"></div>
+<label>Full name<input id="pf_name"></label><label>Email<input id="pf_email" readonly></label><label>Mobile number<input id="pf_mobile" inputmode="numeric" maxlength="10"></label>
+<button class="b primary">Save changes</button></form>
+<div class="card"><h3>Credit</h3><div class="sumrow"><span>Credit limit</span><b id="pc_limit">0.00</b></div><div class="sumrow"><span>Used</span><b id="pc_used">0.00</b></div><div class="sumrow big"><span>Available</span><span id="pc_avail">0.00</span></div>
+<p><small>Your credit limit is set by the store admin.</small></p></div></div></div>
+
+<div id="pane-security" class="apane" style="display:none"><div class="acct-grid">
+<form id="pwForm" class="card" novalidate><h3>Change password</h3><div id="e_pw" class="errs"></div>
+<label>New password<input id="pw_new" type="password" autocomplete="new-password"></label><label>Confirm new password<input id="pw_new2" type="password" autocomplete="new-password"></label>
+<button class="b primary">Update password</button></form>
+<div class="card"><h3>Forgot your password?</h3><p>We can email a reset link to <b id="resetEmail"></b>.</p><button id="resetBtn" class="b" type="button"><span data-ic="key"></span>Send reset link</button></div></div></div>
+</section>
+</main>
+<footer><a class="brand" href="#shop" data-go="shop"><img src="img/logo.svg" alt=""><span class="app-name">CartNest</span></a>&copy; <span id="yr"></span> <span class="app-name">CartNest</span>. All rights reserved.</footer>
+
+<div id="billBox" class="modal closable"><div class="card dlg"><div class="dlg-head"><h3>Your bill</h3><button class="ib" data-close aria-label="Close"><span data-ic="x"></span></button></div><div class="dlg-body" id="billBody"></div></div></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+<script src="js/config.js"></script><script src="js/api.js"></script><script src="js/validators.js"></script><script src="js/ui.js"></script><script src="js/customer.js"></script></body></html>

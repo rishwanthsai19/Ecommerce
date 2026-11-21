@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="img/logo.svg"><link rel="stylesheet" href="css/style.css"><title>CartNest: Admin</title></head>
+<body><div id="loader" class="loader" role="status" aria-label="Loading"></div><div id="msg" class="msg"></div>
+<header><button class="hbtn" id="menuBtn" aria-label="Menu"><span data-ic="menu"></span></button>
+<a class="brand" href="admin.html"><img src="img/logo.svg" alt=""><h1><span class="app-name">CartNest</span><span class="badge-admin">Admin</span></h1></a>
+<div class="hright"><small id="who"></small><button class="hbtn" onclick="logout()"><span data-ic="logout"></span><span class="lbl">Sign out</span></button></div></header>
+<div class="shell">
+<aside class="sidebar" id="sidebar"><div class="grp">CATALOGUE</div>
+<button class="nav-item active" data-t="cats"><span data-ic="grid"></span>Categories<span class="count" id="n_cats">0</span></button>
+<button class="nav-item" data-t="prods"><span data-ic="box"></span>Inventory<span class="count" id="n_prods">0</span></button>
+<div class="grp">PEOPLE</div>
+<button class="nav-item" data-t="custs"><span data-ic="users"></span>Customers<span class="count" id="n_custs">0</span></button>
+<div class="grp">INSIGHTS</div>
+<button class="nav-item" data-t="reps"><span data-ic="chart"></span>Reports</button></aside>
+
+<main class="content">
+<section id="cats" class="sec">
+<div class="page-head"><div><h2>Categories</h2><p class="sub">Organise the catalogue into groups customers can browse.</p></div><button class="b primary" id="catAdd"><span data-ic="plus"></span>Add category</button></div>
+<div class="stats" id="catStats"></div>
+<div class="card flush"><table><thead><tr><th>Category</th><th>ID</th><th>Products</th><th></th></tr></thead><tbody id="catBody"></tbody></table></div></section>
+
+<section id="prods" class="sec" style="display:none">
+<div class="page-head"><div><h2>Inventory</h2><p class="sub">Manage products, prices and stock levels.</p></div><button class="b primary" id="prodAdd"><span data-ic="plus"></span>Add product</button></div>
+<div class="stats" id="prodStats"></div>
+<div class="card flush"><div class="toolbar"><select id="pf_cat" aria-label="Category"></select><input id="pf_q" placeholder="Find by ID or title" aria-label="Search products"></div>
+<table><thead><tr><th>Product</th><th>ID</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="prodBody"></tbody></table><div id="prodPager" class="pager"></div></div></section>
+
+<section id="custs" class="sec" style="display:none">
+<div class="page-head"><div><h2>Customers</h2><p class="sub">Customers appear here when they sign up. Orders apply a maximum credit of 1000 whatever limit is set.</p></div><button class="b primary" id="custAdd"><span data-ic="plus"></span>Add customer</button></div>
+<div class="stats" id="custStats"></div>
+<div class="card flush"><table><thead><tr><th>Customer</th><th>ID</th><th>Mobile</th><th>Credit limit</th><th></th></tr></thead><tbody id="custBody"></tbody></table></div></section>
+
+<section id="reps" class="sec" style="display:none">
+<div class="page-head"><div><h2>Reports</h2><p class="sub">Pick a report, set dates where needed and run it.</p></div></div>
+<div class="card"><div id="e_rep" class="errs"></div>
+<div class="fgrid"><label>Report<select id="rep"></select></label>
+<span id="dates" class="fgrid"><label>From<input id="r_from" type="date"></label><label>To<input id="r_to" type="date"></label></span></div>
+<button id="repRun" class="b primary"><span data-ic="chart"></span>Run report</button></div>
+<div class="card flush"><div style="padding:1rem 1rem 0"><h3 id="repTitle">Pick a report and run it</h3></div><div id="repOut" class="scroll"></div></div></section>
+</main></div>
+
+<!-- Category popup -->
+<div id="catModal" class="modal closable"><div class="card dlg"><div class="dlg-head"><h3 id="catModalTitle">Add category</h3><button class="ib" data-close aria-label="Close"><span data-ic="x"></span></button></div>
+<form id="catForm" novalidate><div class="dlg-body"><div id="e_cat" class="errs"></div>
+<div class="fgrid"><label>Category ID<input id="cat_id" placeholder="auto if blank"></label><label>Category name<input id="cat_name"></label></div>
+<label>Image link <span class="hint">(paste an Unsplash image URL)</span><input id="cat_img" placeholder="https://images.unsplash.com/photo-..."></label>
+<div class="preview"><img id="cat_prev" alt="Image preview"></div></div>
+<div class="dlg-foot"><button type="button" class="b" data-close>Cancel</button><button class="b primary" id="catSave">Save category</button></div></form></div></div>
+
+<!-- Product popup -->
+<div id="prodModal" class="modal closable"><div class="card dlg"><div class="dlg-head"><h3 id="prodModalTitle">Add product</h3><button class="ib" data-close aria-label="Close"><span data-ic="x"></span></button></div>
+<form id="prodForm" novalidate><div class="dlg-body"><div id="e_prod" class="errs"></div>
+<div class="fgrid"><label>Product ID<input id="p_id" placeholder="auto if blank"></label><label>Category<select id="p_cat"></select></label>
+<label class="full">Title<input id="p_title"></label><label class="full">Description<textarea id="p_desc"></textarea></label>
+<label>Quantity<input id="p_qty" type="number" min="0" value="0"></label><label>Price<input id="p_price" type="number" min="0" step="0.01" value="0"></label></div>
+<label>Image link <span class="hint">(paste an Unsplash image URL)</span><input id="p_img" placeholder="https://images.unsplash.com/photo-..."></label>
+<div class="preview"><img id="p_prev" alt="Image preview"></div>
+<label class="inline"><input id="p_active" type="checkbox" checked> Active (visible to customers)</label></div>
+<div class="dlg-foot"><button type="button" class="b" data-close>Cancel</button><button class="b primary" id="prodSave">Save product</button></div></form></div></div>
+
+<!-- Customer popup -->
+<div id="custModal" class="modal closable"><div class="card dlg"><div class="dlg-head"><h3 id="custModalTitle">Add customer</h3><button class="ib" data-close aria-label="Close"><span data-ic="x"></span></button></div>
+<form id="custForm" novalidate><div class="dlg-body"><div id="e_cust" class="errs"></div>
+<div class="fgrid"><label>Customer ID<input id="c_id" placeholder="auto if blank"></label><label>Name<input id="c_name"></label>
+<label>Email<input id="c_email" type="email"></label><label>Mobile<input id="c_mobile" maxlength="10"></label>
+<label class="full">Credit limit<input id="c_limit" type="number" min="0" value="0"></label></div></div>
+<div class="dlg-foot"><button type="button" class="b" data-close>Cancel</button><button class="b primary" id="custSave">Save customer</button></div></form></div></div>
+
+<!-- Delete confirmation -->
+<div id="confirmBox" class="modal"><div class="card dlg sm"><div class="warn-ic" data-ic="trash"></div><h3 id="confirmTitle">Are you sure?</h3><p id="confirmText"></p>
+<div class="dlg-foot"><button id="noBtn" class="b">Cancel</button><button id="yesBtn" class="b danger-solid">Delete</button></div></div></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"></script>
+<script src="js/config.js"></script><script src="js/api.js"></script><script src="js/validators.js"></script><script src="js/ui.js"></script><script src="js/admin.js"></script></body></html>

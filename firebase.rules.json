@@ -1,0 +1,38 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "categories": {
+      ".read": "auth != null",
+      ".write": "auth.token.email === 'admin@shop.com'"
+    },
+    "products": {
+      ".read": "auth != null",
+      ".indexOn": ["cat_id"],
+      "$pid": {
+        ".write": "auth.token.email === 'admin@shop.com'",
+        "qty": {
+          ".write": "auth != null",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        }
+      }
+    },
+    "customers": {
+      ".read": "auth.token.email === 'admin@shop.com'",
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        ".write": "auth.token.email === 'admin@shop.com' || (auth.uid === $uid && newData.child('credit_limit').val() === (data.exists() ? data.child('credit_limit').val() : 0))"
+      }
+    },
+    "carts": {
+      "$uid": { ".read": "auth.uid === $uid", ".write": "auth.uid === $uid" }
+    },
+    "orders": {
+      ".read": "auth.token.email === 'admin@shop.com'",
+      "$uid": {
+        ".read": "auth.uid === $uid",
+        "$oid": { ".write": "auth.uid === $uid && !data.exists()" }
+      }
+    }
+  }
+}
