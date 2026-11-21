@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400" role="img" aria-label="Shopping trolley full of groceries">
+<ellipse cx="240" cy="360" rx="170" ry="16" fill="#1f2a44" opacity=".12"/>
+<!-- items -->
+<rect x="150" y="96" width="52" height="86" rx="8" fill="#2f9e44"/><rect x="150" y="96" width="52" height="22" rx="8" fill="#237a35"/><circle cx="176" cy="146" r="12" fill="#d3f9d8"/>
+<path d="M236 118c-18 8-26 30-16 52h60c10-22 2-44-16-52z" fill="#e8590c"/><path d="M252 118c0-12 6-20 16-22" stroke="#237a35" stroke-width="6" fill="none" stroke-linecap="round"/>
+<rect x="296" y="82" width="46" height="100" rx="8" fill="#3b5bdb"/><rect x="296" y="82" width="46" height="26" rx="8" fill="#2b44a8"/><rect x="304" y="126" width="30" height="26" rx="4" fill="#dbe4ff"/>
+<rect x="196" y="140" width="40" height="42" rx="6" fill="#c2255c"/><rect x="196" y="140" width="40" height="10" rx="4" fill="#9c1b49"/>
+<rect x="345" y="130" width="34" height="52" rx="6" fill="#7048e8"/>
+<!-- basket -->
+<path d="M96 160h288l-30 128H132z" fill="#ff9f1c"/>
+<path d="M96 160h288l-4 18H100z" fill="#e58a00"/>
+<g stroke="#1f2a44" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"><path d="M150 196l12 80M196 196l6 80M244 196v80M290 196l-6 80M336 196l-12 80M120 220h244M128 250h226"/></g>
+<!-- handle & frame -->
+<path d="M30 70h54l30 218" fill="none" stroke="#1f2a44" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M126 288h246" stroke="#1f2a44" stroke-width="12" stroke-linecap="round"/>
+<path d="M144 288l-10 38h226l-10-38" fill="none" stroke="#1f2a44" stroke-width="10" stroke-linejoin="round"/>
+<circle cx="170" cy="344" r="22" fill="#1f2a44"/><circle cx="170" cy="344" r="8" fill="#ff9f1c"/>
+<circle cx="330" cy="344" r="22" fill="#1f2a44"/><circle cx="330" cy="344" r="8" fill="#ff9f1c"/>
+<!-- sparkles -->
+<g fill="#ff9f1c"><path d="M420 60l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/><path d="M70 150l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" opacity=".7"/></g>
+</svg>
